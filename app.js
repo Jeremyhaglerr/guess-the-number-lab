@@ -4,9 +4,12 @@ console.log('guess the number lab')
   biggestNum: 100,
   smallestNum: 1,
   secretNum: null,
-  prevGuesses: /*1. Add a `prevGuesses` property to the `game` object initialized to an empty array.*/
+  prevGuesses: []/*1. Add a `prevGuesses` property to the `game` object initialized to an empty array.*/
   play: function() {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
+    do {
+      this.prevGuesses.push(this.getGuess())
+    } while (this.prevGuesses[this.prevGuesses.length -1]!== this.secretNum)
   }
 }
