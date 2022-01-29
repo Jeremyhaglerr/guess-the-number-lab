@@ -9,24 +9,26 @@ const game = {
     this.setGuessRange()
     //generates a random between the smallest number and biggest number allowed
     this.secretNum = Math.floor(Math.random() * (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
+    //pushes guess to prevGuess while it doesn't equal the secretNum
     do {
-      //pushes guess to prevGuess while it doesn't equal the secretNum and display the result of the player's guess
       this.prevGuesses.push(this.getGuess())
-      // this.updateGuessRange() // invoke the not working updateGuessRange function
+      this.updateGuessRange() 
       this.render()
     } while (this.prevGuesses[this.prevGuesses.length -1]!== this.secretNum)
   },
+
+  //displays a prompt message to enter a guess while the guess is: not a number, smaller than smallestNum, bigger than biggestNum
   getGuess: function() {
     let guess = null
     do {
-      //displays a prompt message to enter a guess while the guess is: not a number, smaller than smallestNum, bigger than biggestNum
       guess=parseInt(prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}`)) 
     } while (isNaN(guess) || guess < this.smallestNum || guess > this.biggestNum)
     return guess
   },
+
+  //prompts the user to set a low and high value to establish the range of the serutNum
   setGuessRange: function() {
     do{
-      //prompts the user to set a low and high value to establish the range of the serutNum
       this.smallestNum = parseInt(prompt(`Enter a number to be the lowest possible guess`))
     } while (isNaN(this.smallestNum))
     do{
@@ -34,21 +36,18 @@ const game = {
     }while (isNaN(this.biggestNum) || this.biggestNum < this.smallestNum + 2)
   },
 
-// NOT WORKING 
-// ______________________________________________________________________
-  // updateGuessRange: function() {
-  //   if (this.prevGuesses[this.prevGuesses-1]>this.secretNum){
-  //     this.biggestNum = this.prevGuesses[this.prevGuesses.length-1];
-  //   } else {
-  //     this.smallestNum = this.prevGuesses[this.prevGuesses.length-1]
-  //   }
-  // },
+//updates the smallestNum and biggestNum to the user's last guess if it was higher else lower than secretNum
+  updateGuessRange: function() {
+    if (this.prevGuesses[this.prevGuesses.length-1]>this.secretNum){
+      this.biggestNum = this.prevGuesses[this.prevGuesses.length-1];
+    } else {
+      this.smallestNum = this.prevGuesses[this.prevGuesses.length-1]
+    }
+  },
 
-// ______________________________________________________________________
-
+  //if the player's guess is correct then display a congratulatory message if  else display low or high message and prompt again
   render: function(){
     let message =null
-    //if the player's guess is correct then display a congratulatory message else display low or high message and prompt again
     if (this.prevGuesses[this.prevGuesses.length-1] === this.secretNum){
     message=`Congrats! You guessed the number in ${this.prevGuesses.length} ${this.prevGuesses.length === 1?'guess':'guesses'}!}`
     } else {
