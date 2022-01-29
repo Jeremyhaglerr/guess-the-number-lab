@@ -26,7 +26,7 @@ const game = {
     return guess
   },
 
-  //prompts the user to set a low and high value to establish the range of the serutNum
+  //prompts the user to set a low and high value to establish the range of the secretNum
   setGuessRange: function() {
     do{
       this.smallestNum = parseInt(prompt(`Enter a number to be the lowest possible guess`))
