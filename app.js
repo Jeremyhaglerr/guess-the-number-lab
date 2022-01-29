@@ -12,7 +12,7 @@ const game = {
     do {
       //pushes guess to prevGuess while it doesn't equal the secretNum and display the result of the player's guess
       this.prevGuesses.push(this.getGuess())
-      // this.updateGuessRange()
+      // this.updateGuessRange() // invoke the not working updateGuessRange function
       this.render()
     } while (this.prevGuesses[this.prevGuesses.length -1]!== this.secretNum)
   },
@@ -33,13 +33,19 @@ const game = {
       this.biggestNum = parseInt(prompt(`Enter a number that is ${this.smallestNum + 2} or more to be the largest possible guess`))
     }while (isNaN(this.biggestNum) || this.biggestNum < this.smallestNum + 2)
   },
+
+// NOT WORKING 
+// ______________________________________________________________________
   // updateGuessRange: function() {
   //   if (this.prevGuesses[this.prevGuesses-1]>this.secretNum){
-  //     this.biggestNum = this.prevGuesses[this.prevGuesses.length-1]
+  //     this.biggestNum = this.prevGuesses[this.prevGuesses.length-1];
   //   } else {
   //     this.smallestNum = this.prevGuesses[this.prevGuesses.length-1]
   //   }
   // },
+
+// ______________________________________________________________________
+
   render: function(){
     let message =null
     //if the player's guess is correct then display a congratulatory message else display low or high message and prompt again
