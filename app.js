@@ -11,5 +11,13 @@ console.log('guess the number lab')
     do {
       this.prevGuesses.push(this.getGuess())
     } while (this.prevGuesses[this.prevGuesses.length -1]!== this.secretNum)
+  },
+  getGuess: function() {
+    let guess = null
+    do {
+      guess=parseInt(promptMessage(`Enter a guess between ${smallestNum} and ${biggestNum}`)) 
+    } while (isNaN(guess) || guess<this.smallestNum || guess>this.biggestNum)
+    return guess
   }
+}
 }
